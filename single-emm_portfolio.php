@@ -22,7 +22,7 @@ $categories		= get_the_terms($post->ID, 'project_categories');
 			<?php endforeach;?>
 		</h3>
 		<?php endif; ?>
-		<div class="text"><?PHP the_content(); ?></div>
+		<div class="content"><?PHP the_content(); ?></div>
 
 		<?php
 		$images_json = get_post_meta( $post->ID, 'emm_portfolio_images_order', true );
