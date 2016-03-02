@@ -1,17 +1,48 @@
 	<!-- Social -->
+	<?php
+	$social = array(
+		'twitter' => get_option('social-twitter', null),
+		'facebook' => get_option('social-facebook', null),
+		'google' => get_option('social-google', null),
+		'tumblr' => get_option('social-tumblr', null),
+		'pinterest' => get_option('social-pinterest', null),
+	);
 
-	<div class="content-wrapper">
-		<div class="social">
-			<p class="social-title">Connect with us</p>
-			<ul class="list-unstyled list-inline">
-				<li><a href="#" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-twitter"></i></a></li>
-				<li><a href="#" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-facebook"></i></a></li>
-				<li><a href="#" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-google-plus"></i></a></li>
-				<li><a href="#" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-tumblr"></i></a></li>
-				<li><a href="#" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-pinterest-p"></i></a></li>
-			</ul>
+	$at_leat_one_social = false;
+
+	foreach($social as $network)
+		if($network)
+			$at_leat_one_social = true
+	?>
+
+	<?php if($at_leat_one_social): ?>
+		<div class="content-wrapper">
+			<div class="social">
+				<p class="social-title">Connect with us</p>
+				<ul class="list-unstyled list-inline">
+					<?php
+					if($social['twitter'])
+						echo '<li><a href="'.$social['twitter'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-twitter"></i></a></li>';
+
+					if($social['facebook'])
+						echo '<li><a href="'.$social['facebook'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-facebook"></i></a></li>';
+
+					if($social['google'])
+						echo '<li><a href="'.$social['google'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-google-plus"></i></a></li>';
+
+					if($social['tumblr'])
+						echo '<li><a href="'.$social['tumblr'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-tumblr"></i></a></li>';
+
+					if($social['pinterest'])
+						echo '<li><a href="'.$social['pinterest'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-pinterest-p"></i></a></li>';
+
+					?>
+				</ul>
+			</div>
 		</div>
-	</div>
+	<?php else: ?>
+		<div class="spacer-70"></div>
+	<?php endif; ?>
 
 	<!-- Footer -->
 
@@ -38,7 +69,15 @@
 			));
 			?>
 
-			<p class="copy">&copy; <?php echo date('Y'); ?> Burton &amp; Miller free template for Wordpress - Made with love in Barcelona</p>
+			<p class="copy">
+				<?php
+				$footer_phrase = get_option('footer-phrase', null);
+				if($footer_phrase)
+					echo $footer_phrase;
+				else
+					echo date('Y') . ' - <a href="https://github.com/emmgfx/burton-miller" target="_blank">Burton &amp; Miller</a> free template for Wordpress - Made with love in Barcelona';
+				?>
+			</p>
 		</div>
 	</div>
 
