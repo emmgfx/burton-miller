@@ -39,7 +39,7 @@ $categories		= get_the_terms($post->ID, 'project_categories');
 				'class' => 'img-responsive'
 			));
 
-			echo '<img src="'.$image_m_data[0].'" width="'.$image_m_data[1].'" height="'.$image_m_data[2].'" alt="'.get_the_title().'" class="img-responsive center-block" />';
+			echo '<img src="'.$image_m_data[0].'" width="'.$image_m_data[1].'" height="'.$image_m_data[2].'" alt="'.get_the_title().'" class="img-responsive img-rounded center-block" />';
 			?>
 		<?php endforeach; ?>
 
