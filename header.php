@@ -55,7 +55,7 @@
 <body <?php body_class(); ?>>
 
     <?php if(is_home()): ?>
-    	<div class="header without-image white-text" data-parallax="scroll" data-image-src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-header2.jpg">
+    	<div class="header with-image white-text" data-parallax="scroll" data-image-src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-header2.jpg">
 
     		<div class="navigation">
     			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
@@ -101,9 +101,9 @@
     			</div>
     		</div>
 
-        		<!-- <div class="container header-image">
-        			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-header.png" class="center-block img-responsive" />
-        		</div> -->
+    		<div class="container header-image">
+    			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-header.png" class="center-block img-responsive" />
+    		</div>
     	</div>
     <?php else: ?>
         <div class="header single">
