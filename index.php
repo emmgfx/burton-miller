@@ -4,16 +4,28 @@
 
 <div class="content-wrapper portfolio">
 	<div class="container">
-		<div class="row wide-gutter">
-			<?php for($i=1; $i<=6; $i++): ?>
-				<div class="col-md-4 col-sm-6">
-					<div class="item">
-						<img src="http://lorempixel.com/500/500/animals/9/" title="title" class="center-block img-responsive img-rounded" />
-						<div class="name">Icon Utopia is Live!</div>
-						<div class="subtitle">iOS, Android</div>
-					</div>
-				</div>
-			<?php endfor; ?>
+
+		<div class="row">
+			<?php
+			global $wp_query;
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			$wp_query = new WP_Query();
+
+			$args = array(
+				'post_type'			=> 'emm_portfolio',
+				'paged'				=> $paged
+			);
+
+			$projects_per_page = get_option('portfolio_projects_per_page', 12);
+			if($projects_per_page != false)
+				$args['posts_per_page'] = intval($projects_per_page);
+
+			$wp_query->query($args);
+
+			while ( $wp_query->have_posts() ) : $wp_query->the_post();
+				include(locate_template('portfolio_list_item.php'));
+			endwhile;
+			?>
 		</div>
 
 		<div align="center">

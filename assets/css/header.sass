@@ -5,6 +5,13 @@
 	min-height: 100vh
 	display: block
 
+	&.single
+		min-height: 0
+		.navigation
+			background: $color-white
+		.navigation.scrolled
+			background: transparentize($color-white, .1)
+
 	.navigation
 		position: fixed
 		width: 100%
@@ -199,4 +206,3 @@
 		color: white
 		.lead
 			color: white
-			

@@ -3,7 +3,7 @@
 <head>
     <!--
     Burton & Miller is a free Wordpress Theme designed by Jordi Manuel
-	(@jordimanuel)and developed by Josep Viciana (@emmgfx).
+	(@jordimanuel) and developed by Josep Viciana (@emmgfx).
 
     All the code is open source and you can improve it in his repository, and I
     hope you make it, but anyway, you should respect the license terms indicated
