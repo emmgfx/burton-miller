@@ -1,5 +1,6 @@
 <?php
 
+require_once 'includes/thumbnails.php';
 require_once 'includes/widgets-menus.php';
 
 add_filter( 'wp_title', 'hack_wp_title_for_home' );
