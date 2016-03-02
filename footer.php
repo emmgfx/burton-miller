@@ -17,12 +17,27 @@
 
 	<div class="content-wrapper small-padding only-bottom">
 		<div class="footer">
-			<ul class="list-unstyled list-inline hidden-xs">
-				<li><a href="#">About</a></li>
-				<li><a href="#">Work</a></li>
-				<li><a href="#">Follow us</a></li>
-				<li><a href="#">Contact us</a></li>
-			</ul>
+			<?PHP
+			wp_nav_menu(array(
+				'theme_location'  => 'footer',
+				'menu'            => 'footer',
+				'container'       => '',
+				'container_class' => '',
+				'container_id'    => '',
+				'menu_class'      => 'list-unstyled list-inline hidden-xs',
+				'menu_id'         => 'footer',
+				'echo'            => true,
+				'fallback_cb'     => '',
+				'before'          => '',
+				'after'           => '',
+				'link_before'     => '',
+				'link_after'      => '',
+				'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+				'depth'           => -1,
+				'walker'          => ''
+			));
+			?>
+
 			<p class="copy">&copy; <?php echo date('Y'); ?> Burton &amp; Miller free template for Wordpress - Made with love in Barcelona</p>
 		</div>
 	</div>

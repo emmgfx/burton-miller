@@ -53,36 +53,95 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<div class="header with-image white-text" data-parallax="scroll" data-image-src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-header2.jpg">
 
-		<div class="navigation">
-			<h1 class="pull-left hidden-xs">Burton &amp; Miller</h1>
-			<div align="center" class="visible-xs">
-				<a href="#" class="mobile-menu-toggler">
-					<div id="hamburger">
-					  <span></span>
-					  <span></span>
-					  <span></span>
-					  <span></span>
-					</div>
-				</a>
-			</div>
-			<ul class="menu list-unstyled list-inline pull-right hidden-xs">
-				<li><a href="#about">About</a></li>
-				<li><a href="#work">Work</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-		</div>
+    <?php if(is_home()): ?>
+    	<div class="header without-image white-text" data-parallax="scroll" data-image-src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-header2.jpg">
 
-		<div class="lead-text">
-			<div class="container">
-				<div class="lead">
-					<p>Fully free responsive portfolio theme for WordPress</p>
-				</div>
-			</div>
-		</div>
+    		<div class="navigation">
+    			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+    			<div align="center" class="visible-xs">
+    				<a href="#" class="mobile-menu-toggler">
+    					<div id="hamburger">
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					</div>
+    				</a>
+    			</div>
 
-		<div class="container header-image">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-header.png" class="center-block img-responsive" />
-		</div>
-	</div>
+                <?PHP
+                wp_nav_menu(array(
+                    'theme_location'  => 'header',
+                    'menu'            => 'header',
+                    'container'       => '',
+                    'container_class' => '',
+                    'container_id'    => '',
+                    'menu_class'      => 'menu list-unstyled list-inline pull-right hidden-xs',
+                    'menu_id'         => 'header',
+                    'echo'            => true,
+                    'fallback_cb'     => '',
+                    'before'          => '',
+                    'after'           => '',
+                    'link_before'     => '',
+                    'link_after'      => '',
+                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                    'depth'           => -1,
+                    'walker'          => ''
+                ));
+                ?>
+
+    		</div>
+
+    		<div class="lead-text">
+    			<div class="container">
+    				<div class="lead">
+    					<p><?php bloginfo('description'); ?></p>
+    				</div>
+    			</div>
+    		</div>
+
+        		<!-- <div class="container header-image">
+        			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-header.png" class="center-block img-responsive" />
+        		</div> -->
+    	</div>
+    <?php else: ?>
+        <div class="header single">
+
+    		<div class="navigation">
+    			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+    			<div align="center" class="visible-xs">
+    				<a href="#" class="mobile-menu-toggler">
+    					<div id="hamburger">
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					</div>
+    				</a>
+    			</div>
+
+                <?PHP
+                wp_nav_menu(array(
+                    'theme_location'  => 'header',
+                    'menu'            => 'header',
+                    'container'       => '',
+                    'container_class' => '',
+                    'container_id'    => '',
+                    'menu_class'      => 'menu list-unstyled list-inline pull-right hidden-xs',
+                    'menu_id'         => 'header',
+                    'echo'            => true,
+                    'fallback_cb'     => '',
+                    'before'          => '',
+                    'after'           => '',
+                    'link_before'     => '',
+                    'link_after'      => '',
+                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                    'depth'           => -1,
+                    'walker'          => ''
+                ));
+                ?>
+
+    		</div>
+    	</div>
+    <?php endif; ?>
