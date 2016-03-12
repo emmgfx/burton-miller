@@ -54,6 +54,27 @@
 </head>
 <body <?php body_class(); ?>>
 
+    <?php
+    $menu_args = array(
+        'theme_location'  => 'header',
+        'menu'            => 'header',
+        'container'       => '',
+        'container_class' => '',
+        'container_id'    => '',
+        'menu_class'      => 'menu list-unstyled list-inline pull-right hidden-xs',
+        'menu_id'         => 'header',
+        'echo'            => true,
+        'fallback_cb'     => '',
+        'before'          => '',
+        'after'           => '',
+        'link_before'     => '',
+        'link_after'      => '',
+        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+        'depth'           => -1,
+        'walker'          => ''
+    );
+    ?>
+
     <?php if(is_home()): ?>
     	<div class="header with-image white-text" data-parallax="scroll" data-image-src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-header2.jpg">
 
@@ -70,26 +91,7 @@
     				</a>
     			</div>
 
-                <?PHP
-                wp_nav_menu(array(
-                    'theme_location'  => 'header',
-                    'menu'            => 'header',
-                    'container'       => '',
-                    'container_class' => '',
-                    'container_id'    => '',
-                    'menu_class'      => 'menu list-unstyled list-inline pull-right hidden-xs',
-                    'menu_id'         => 'header',
-                    'echo'            => true,
-                    'fallback_cb'     => '',
-                    'before'          => '',
-                    'after'           => '',
-                    'link_before'     => '',
-                    'link_after'      => '',
-                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                    'depth'           => -1,
-                    'walker'          => ''
-                ));
-                ?>
+                <?PHP wp_nav_menu($menu_args); ?>
 
     		</div>
 
@@ -106,42 +108,43 @@
     		</div>
     	</div>
     <?php else: ?>
-        <div class="header single">
+            <?php if(has_post_thumbnail()): ?>
+            <div class="header single white-text" data-parallax="scroll" data-image-src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() );?>">
+            <?php else: ?>
+            <div class="header single white-text">
+            <?php endif; ?>
+        		<div class="navigation">
+        			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+        			<div align="center" class="visible-xs">
+        				<a href="#" class="mobile-menu-toggler">
+        					<div id="hamburger">
+        					  <span></span>
+        					  <span></span>
+        					  <span></span>
+        					  <span></span>
+        					</div>
+        				</a>
+        			</div>
+                    <?PHP wp_nav_menu($menu_args); ?>
+        		</div> <!-- /.navigation -->
 
-    		<div class="navigation">
-    			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
-    			<div align="center" class="visible-xs">
-    				<a href="#" class="mobile-menu-toggler">
-    					<div id="hamburger">
-    					  <span></span>
-    					  <span></span>
-    					  <span></span>
-    					  <span></span>
-    					</div>
-    				</a>
-    			</div>
+                <?php if(get_post_type() == 'emm_portfolio'): ?>
+                <div class="container title">
+                    <?php $categories = get_the_terms($post->ID, 'project_categories'); ?>
+                    <h2><?php the_title(); ?></h2>
+                    <?php if($categories != false): ?>
+                    <h3>
+                        <?php foreach ($categories as $index => $taxonomy ): ?>
+                            <a href="<?php echo get_term_link($taxonomy); ?>"><?php echo $taxonomy->name; ?></a><?php if($index < count($categories) - 1){ echo ', '; } ?>
+                        <?php endforeach;?>
+                    </h3>
+                    <?php endif; ?>
+                </div>
+                <?php else: ?>
+                    <div class="container title">
+                        <h2><?php the_title(); ?></h2>
+                    </div>
+                <?php endif; ?>
 
-                <?PHP
-                wp_nav_menu(array(
-                    'theme_location'  => 'header',
-                    'menu'            => 'header',
-                    'container'       => '',
-                    'container_class' => '',
-                    'container_id'    => '',
-                    'menu_class'      => 'menu list-unstyled list-inline pull-right hidden-xs',
-                    'menu_id'         => 'header',
-                    'echo'            => true,
-                    'fallback_cb'     => '',
-                    'before'          => '',
-                    'after'           => '',
-                    'link_before'     => '',
-                    'link_after'      => '',
-                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                    'depth'           => -1,
-                    'walker'          => ''
-                ));
-                ?>
-
-    		</div>
-    	</div>
+        	</div>
     <?php endif; ?>

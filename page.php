@@ -8,7 +8,6 @@
 
 	<div id="post-<?php the_ID(); ?>" <?php post_class($post_classes); ?>>
 
-		<h2><?php the_title(); ?></h2>
 		<div class="content"><?PHP the_content(); ?></div>
 
 	</div>

@@ -1,7 +1,7 @@
 <?php
 if(has_post_thumbnail()):
 
-	the_post_thumbnail('custom_1', array( 'class'	=> "img-rounded img-responsive center-block featured"));
+	$project_poster = wp_get_attachment_image_src( get_post_thumbnail_id(), 'portfolio_1' );
 
 else:
 

@@ -7,10 +7,24 @@
 
 	&.single
 		min-height: 0
+		height: 50vh
+		background-color: rgba(0, 0, 0, .5)
 		.navigation
-			background: $color-white
+			// background: $color-white
 		.navigation.scrolled
 			background: transparentize($color-white, .1)
+
+		.title
+			text-align: center
+			h2
+				margin: 1em 0 .5em 0
+				font-size: 50px
+				color: $color-white
+
+			h3
+				margin: 0 0 2em 0
+				font-size: 50px
+				color: $color-gray-30
 
 	.navigation
 		position: fixed

@@ -14,14 +14,6 @@ $categories		= get_the_terms($post->ID, 'project_categories');
 
 	<div id="post-<?php the_ID(); ?>" <?php post_class($post_classes); ?>>
 
-		<h2><?php the_title(); ?></h2>
-		<?php if($technologies != false): ?>
-		<h3>
-			<?php foreach ($categories as $index => $taxonomy ): ?>
-				<a href="<?php echo get_term_link($taxonomy); ?>"><?php echo $taxonomy->name; ?></a><?php if($index < count($categories) - 1){ echo ', '; } ?>
-			<?php endforeach;?>
-		</h3>
-		<?php endif; ?>
 		<div class="content"><?PHP the_content(); ?></div>
 
 		<?php
