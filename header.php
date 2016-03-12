@@ -107,44 +107,68 @@
     			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-header.png" class="center-block img-responsive" />
     		</div>
     	</div>
+    <?php elseif(is_tax()): ?>
+        <?php if(has_post_thumbnail()): ?>
+        <div class="header single white-text" data-parallax="scroll" data-image-src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() );?>">
+        <?php else: ?>
+        <div class="header single white-text">
+        <?php endif; ?>
+    		<div class="navigation">
+    			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+    			<div align="center" class="visible-xs">
+    				<a href="#" class="mobile-menu-toggler">
+    					<div id="hamburger">
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					</div>
+    				</a>
+    			</div>
+                <?PHP wp_nav_menu($menu_args); ?>
+    		</div> <!-- /.navigation -->
+            <div class="container title">
+                <h2><?php echo get_queried_object()->name ?></h2>
+            </div>
+    	</div>
     <?php else: ?>
-            <?php if(has_post_thumbnail()): ?>
-            <div class="header single white-text" data-parallax="scroll" data-image-src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() );?>">
-            <?php else: ?>
-            <div class="header single white-text">
-            <?php endif; ?>
-        		<div class="navigation">
-        			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
-        			<div align="center" class="visible-xs">
-        				<a href="#" class="mobile-menu-toggler">
-        					<div id="hamburger">
-        					  <span></span>
-        					  <span></span>
-        					  <span></span>
-        					  <span></span>
-        					</div>
-        				</a>
-        			</div>
-                    <?PHP wp_nav_menu($menu_args); ?>
-        		</div> <!-- /.navigation -->
+        <?php if(has_post_thumbnail()): ?>
+        <div class="header single white-text" data-parallax="scroll" data-image-src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() );?>">
+        <?php else: ?>
+        <div class="header single white-text">
+        <?php endif; ?>
+    		<div class="navigation">
+    			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+    			<div align="center" class="visible-xs">
+    				<a href="#" class="mobile-menu-toggler">
+    					<div id="hamburger">
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					  <span></span>
+    					</div>
+    				</a>
+    			</div>
+                <?PHP wp_nav_menu($menu_args); ?>
+    		</div> <!-- /.navigation -->
 
-                <?php if(get_post_type() == 'emm_portfolio'): ?>
-                <div class="container title">
-                    <?php $categories = get_the_terms($post->ID, 'project_categories'); ?>
-                    <h2><?php the_title(); ?></h2>
-                    <?php if($categories != false): ?>
-                    <h3>
-                        <?php foreach ($categories as $index => $taxonomy ): ?>
-                            <a href="<?php echo get_term_link($taxonomy); ?>"><?php echo $taxonomy->name; ?></a><?php if($index < count($categories) - 1){ echo ', '; } ?>
-                        <?php endforeach;?>
-                    </h3>
-                    <?php endif; ?>
-                </div>
-                <?php else: ?>
-                    <div class="container title">
-                        <h2><?php the_title(); ?></h2>
-                    </div>
+            <?php if(get_post_type() == 'emm_portfolio'): ?>
+            <div class="container title">
+                <?php $categories = get_the_terms($post->ID, 'project_categories'); ?>
+                <h2><?php the_title(); ?></h2>
+                <?php if($categories != false): ?>
+                <h3>
+                    <?php foreach ($categories as $index => $taxonomy ): ?>
+                        <a href="<?php echo get_term_link($taxonomy); ?>"><?php echo $taxonomy->name; ?></a><?php if($index < count($categories) - 1){ echo ', '; } ?>
+                    <?php endforeach;?>
+                </h3>
                 <?php endif; ?>
+            </div>
+            <?php else: ?>
+                <div class="container title">
+                    <h2><?php the_title(); ?></h2>
+                </div>
+            <?php endif; ?>
 
-        	</div>
+    	</div>
     <?php endif; ?>
