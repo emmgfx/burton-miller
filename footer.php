@@ -88,9 +88,9 @@
 
 		var $ = jQuery;
 
-		var navigation = $(".navigation");
-		var menu = $(".navigation .menu");
-		var hamburger = $("#hamburger");
+		var navigation = $(".header .navigation");
+		var menu = $(".header .navigation .menu");
+		var hamburger = $(".header #hamburger");
 
 		$(window).scroll(function(){
 			var scrollTop = $(document).scrollTop();
