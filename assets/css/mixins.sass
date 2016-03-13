@@ -1,0 +1,19 @@
+// main: style.sass
+
+@mixin transition($transition)
+    -webkit-transition: $transition
+    -moz-transition: $transition
+    -o-transition: $transition
+    -ms-transition: $transition
+    transition:	$transition
+
+@mixin overflowed-text
+	white-space: nowrap
+	overflow: hidden
+	text-overflow: ellipsis
+
+@mixin transform($string)
+	-webkit-transform:	$string
+	-moz-transform: 	$string
+	-ms-transform: 		$string
+	-o-transform: 		$string
