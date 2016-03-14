@@ -115,7 +115,25 @@ body
 			background-color: darken($color-success, 9)
 			border-color: darken($color-success, 9)
 
+.pagination
+	.page-numbers
+		display: inline-block
+		border: 2px solid $color-gray-40
+		padding: .3em .8em
+		// min-width: 100px
+		margin: .5em .5em
+		border-radius: 4em
+		font-size: 21px
+		@include transition(all .05s linear)
 
+	a.page-numbers:hover,
+		background: $color-gray-40
+		color: $color-gray-10
+
+	.page-numbers.current
+		background-color: $color-success
+		border-color: $color-success
+		color: $color-white
 
 .row.wide-gutter
 	// margin-left: -50px
