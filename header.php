@@ -34,9 +34,20 @@
 
     <?php
     $option = array(
-    	// 'procastinate_fonts' => intval(get_option('procastinate-fonts', 1)) == 1,
-        // 'sidebar_active' => intval(get_option('sidebar-active')) == 1,
+        'home-header-bg-attachment' => get_option('home-header-bg-attachment'),
+        'home-header-img-attachment' => get_option('home-header-img-attachment'),
+        'home-header-white-text' => intval(get_option('home-header-white-text', 0)) == 1,
     );
+
+    $haveHeaderImage = is_numeric($option['home-header-img-attachment']);
+    $haveHeaderBG = is_numeric($option['home-header-bg-attachment']);
+
+    if($haveHeaderImage)
+        $headerImage = wp_get_attachment_url($option['home-header-img-attachment']);
+
+    if($haveHeaderBG)
+        $headerBG = wp_get_attachment_url($option['home-header-bg-attachment']);
+
     ?>
     <title><?php wp_title(''); ?></title>
     <meta charset="<?php bloginfo('charset'); ?>">
@@ -76,7 +87,7 @@
     ?>
 
     <?php if(is_home()): ?>
-    	<div class="header with-image white-text" data-parallax="scroll" data-image-src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-header2.jpg">
+    	<div class="header <?php echo ($haveHeaderImage ? 'with-image' : 'without-image'); ?> <?php echo ($option['home-header-white-text'] ? 'white-text' : ''); ?>" data-parallax="scroll" data-image-src="<?php echo $headerBG; ?>">
 
     		<div class="navigation">
     			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
@@ -103,9 +114,11 @@
     			</div>
     		</div>
 
+            <?php if($haveHeaderImage): ?>
     		<div class="container header-image">
-    			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-header.png" class="center-block img-responsive" />
+    			<img src="<?php echo $headerImage; ?>" class="center-block img-responsive" />
     		</div>
+            <?php endif; ?>
     	</div>
     <?php elseif(is_tax()): ?>
         <?php if(has_post_thumbnail()): ?>
