@@ -28,7 +28,7 @@ $project_categories = wp_get_post_terms( $post->ID, 'project_categories' );
 
 <div class="col-md-4 col-sm-6">
 	<div class="item">
-		<a href="<?php the_permalink(); ?>"><img src="<?php echo $project_poster[0]; ?>" width="<?php echo $project_poster[1]; ?>" height="<?php echo $project_poster[2]; ?>" class="img-responsive center-block img-rounded" /></a>
+		<a href="<?php the_permalink(); ?>" class="featured-image"><img class="img-hover" src="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio-hover.png" /><img src="<?php echo $project_poster[0]; ?>" width="<?php echo $project_poster[1]; ?>" height="<?php echo $project_poster[2]; ?>" class="img-poster img-responsive center-block img-rounded" /></a>
 		<div class="name"><?php the_title(); ?></div>
 		<div class="subtitle">
 			<?php foreach($project_categories as $index => $category): ?>
