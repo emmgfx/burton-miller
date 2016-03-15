@@ -1,5 +1,7 @@
 <?php
-if(has_post_thumbnail()):
+$portfolio_first_instead_featured = intval(get_option('portfolio-use-first-image-instead-featured', 0)) == 1;
+
+if(has_post_thumbnail() && !$portfolio_first_instead_featured):
 
 	$project_poster = wp_get_attachment_image_src( get_post_thumbnail_id(), 'portfolio_1' );
 
@@ -34,7 +36,6 @@ $project_categories = wp_get_post_terms( $post->ID, 'project_categories' );
 			<?php foreach($project_categories as $index => $category): ?>
 				<?php $isLast = $index < count($project_categories)-1; ?>
 				<a href="<?php echo get_site_url(); ?>/projects/category/<?php echo $category->slug; ?>"><?php echo $category->name; ?></a><?php if($isLast){ echo ', '; } ?>
-
 			<?php endforeach; ?>
 		</div>
 	</div>

@@ -10,6 +10,7 @@ function register_bm_settings() {
 	register_setting( 'bm-settings', 'home-header-bg-attachment' );
 	register_setting( 'bm-settings', 'home-header-img-attachment' );
 	register_setting( 'bm-settings', 'home-header-white-text' );
+	register_setting( 'bm-settings', 'portfolio-use-first-image-instead-featured' );
 
 }
 
@@ -144,6 +145,14 @@ function bm_settings() {
 
             	});
             	</script>
+            </div>
+
+			<div class="card">
+				<?php
+				$portfolio_first_instead_featured = intval(get_option('portfolio-use-first-image-instead-featured', 0)) == 1;
+ 				?>
+                <h3><span class="dashicons dashicons-format-quote"></span> General options:</h3>
+                <p><label><input type="checkbox" name="portfolio-use-first-image-instead-featured" value="1" <?php if($portfolio_first_instead_featured){ echo 'checked'; } ?> /> Portfolio list items: Use first project image instead the featured. </label></p>
             </div>
 
 			<div class="card">
