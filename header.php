@@ -39,8 +39,8 @@
         'home-header-white-text' => intval(get_option('home-header-white-text', 0)) == 1,
     );
 
-    $haveHeaderImage = is_numeric($option['home-header-img-attachment']);
-    $haveHeaderBG = is_numeric($option['home-header-bg-attachment']);
+    $haveHeaderImage = !empty($option['home-header-img-attachment']);
+    $haveHeaderBG = !empty($option['home-header-bg-attachment']);
 
     if($haveHeaderImage)
         $headerImage = wp_get_attachment_url($option['home-header-img-attachment']);
@@ -75,6 +75,7 @@
 <body <?php body_class(); ?>>
 
     <?php if(is_home()): ?>
+
     	<div class="header <?php echo ($haveHeaderImage ? 'with-image' : 'without-image'); ?> <?php echo ($option['home-header-white-text'] ? 'white-text' : ''); ?>" data-parallax="scroll" data-image-src="<?php echo $headerBG; ?>">
 
     		<div class="navigation">
