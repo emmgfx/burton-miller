@@ -1,6 +1,10 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Template Name: Portfolio Index
+ */
+?>
 
-<!-- Portfolio -->
+<?php get_header(); ?>
 
 <div class="content-wrapper portfolio">
 	<div class="container">
@@ -16,8 +20,6 @@
 				'paged'				=> $paged
 			);
 
-			$args['posts_per_page'] = 6;
-
 			$wp_query->query($args);
 
 			while ( $wp_query->have_posts() ) : $wp_query->the_post();
@@ -28,12 +30,7 @@
 
 		<div align="center">
 			<div class="spacer-70"></div>
-			<?php
-			$portfolio_works_page = get_option('portfolio-works-page', '#');
-			if(is_numeric($portfolio_works_page))
-				$portfolio_works_page = get_permalink($portfolio_works_page);
-			?>
-			<a href="<?php echo $portfolio_works_page; ?>" class="btn btn-burton">View more</a>
+			<?PHP get_template_part('pagination'); ?>
 		</div>
 
 	</div>
