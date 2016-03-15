@@ -48,6 +48,15 @@
     if($haveHeaderBG)
         $headerBG = wp_get_attachment_url($option['home-header-bg-attachment']);
 
+    function showMenu(){
+        echo '<ul id="header" class="menu list-unstyled list-inline pull-right hidden-xs">';
+            echo '<li class="visible-xs"><a href="'.get_home_url().'">Home</a></li>';
+            foreach (wp_get_nav_menu_items('header') as $key => $value) {
+                echo '<li><a href="'.$value->url.'">'.$value->title.'</a></li>';
+            }
+        echo '</ul>';
+    }
+
     ?>
     <title><?php wp_title(''); ?></title>
     <meta charset="<?php bloginfo('charset'); ?>">
@@ -65,27 +74,6 @@
 </head>
 <body <?php body_class(); ?>>
 
-    <?php
-    $menu_args = array(
-        'theme_location'  => 'header',
-        'menu'            => 'header',
-        'container'       => '',
-        'container_class' => '',
-        'container_id'    => '',
-        'menu_class'      => 'menu list-unstyled list-inline pull-right hidden-xs',
-        'menu_id'         => 'header',
-        'echo'            => true,
-        'fallback_cb'     => '',
-        'before'          => '',
-        'after'           => '',
-        'link_before'     => '',
-        'link_after'      => '',
-        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-        'depth'           => -1,
-        'walker'          => ''
-    );
-    ?>
-
     <?php if(is_home()): ?>
     	<div class="header <?php echo ($haveHeaderImage ? 'with-image' : 'without-image'); ?> <?php echo ($option['home-header-white-text'] ? 'white-text' : ''); ?>" data-parallax="scroll" data-image-src="<?php echo $headerBG; ?>">
 
@@ -101,9 +89,7 @@
     					</div>
     				</a>
     			</div>
-
-                <?PHP wp_nav_menu($menu_args); ?>
-
+                <?php showMenu(); ?>
     		</div>
 
     		<div class="lead-text">
@@ -138,7 +124,7 @@
     					</div>
     				</a>
     			</div>
-                <?PHP wp_nav_menu($menu_args); ?>
+                <?php showMenu(); ?>
     		</div> <!-- /.navigation -->
             <div class="container title">
                 <h2><?php echo get_queried_object()->name ?></h2>
@@ -162,7 +148,7 @@
     					</div>
     				</a>
     			</div>
-                <?PHP wp_nav_menu($menu_args); ?>
+                <?php showMenu(); ?>
     		</div> <!-- /.navigation -->
 
             <?php if(get_post_type() == 'emm_portfolio'): ?>
