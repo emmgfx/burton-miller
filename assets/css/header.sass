@@ -7,9 +7,11 @@
 	position: relative
 
 	&.single
-		min-height: 300px
 		height: 50vh
+		min-height: 300px
+		padding: 0px 0
 		background-color: rgba(0, 0, 0, .5)
+
 		.navigation
 
 		.navigation.scrolled
@@ -31,6 +33,10 @@
 				margin: 0 0 0 0
 				font-size: 50px
 				color: transparentize($color-white, .6)
+
+			@media (max-width: 786px), (max-height: 786px)
+				h2, h3
+					font-size: 30px
 
 	.navigation
 		position: fixed
