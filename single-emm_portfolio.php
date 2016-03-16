@@ -21,7 +21,14 @@ $categories		= get_the_terms($post->ID, 'project_categories');
 		if(!is_array(@json_decode($images_json, true)))
 			$images_json = json_encode(array());
 
-		foreach(json_decode($images_json) as $attachment_id):
+		$images_array = json_decode($images_json);
+		$total_images = count($images_array);
+		$portfolio_first_instead_featured = intval(get_option('portfolio-use-first-image-instead-featured', 0)) == 1;
+
+		foreach($images_array as $index => $attachment_id):
+
+			if($total_images > 1 && $index == 0 && $portfolio_first_instead_featured)
+				continue;
 
 			$attachment_meta = wp_get_attachment_metadata($attachment_id);
 			if($attachment_meta == false)
