@@ -49,9 +49,15 @@
         $headerBG = wp_get_attachment_url($option['home-header-bg-attachment']);
 
     function showMenu(){
+
+        $menu_name = 'header';
+        $locations = get_nav_menu_locations();
+        $menu_id = $locations[ $menu_name ] ;
+        $menu = wp_get_nav_menu_object($menu_id);
+
         echo '<ul id="header" class="menu list-unstyled list-inline pull-right hidden-xs">';
             echo '<li class="visible-xs"><a href="'.get_home_url().'">Home</a></li>';
-            foreach (wp_get_nav_menu_items('header') as $key => $value) {
+            foreach ((array) wp_get_nav_menu_items($menu->name) as $key => $value) {
                 echo '<li><a href="'.$value->url.'">'.$value->title.'</a></li>';
             }
         echo '</ul>';
