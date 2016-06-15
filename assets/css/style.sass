@@ -213,7 +213,30 @@ body
 	height: 70px
 
 
+.wpcf7
+	text-align: center
 
+	.wpcf7-form-control-wrap
+		display: block
+		margin-bottom: 1em
+		margin-top: .5em
+
+	.wpcf7-form-control
+		&.wpcf7-text,
+		&.wpcf7-textarea
+			padding: .5em
+			border: 2px solid $color-gray-20
+			border-radius: 2em
+			text-align: center
+			resize: vertical
+
+			&:focus
+				outline: none
+				border-color: $color-gray-70
+
+	.wpcf7-submit
+		@extend .btn-burton
+		background-color: white
 
 
 
