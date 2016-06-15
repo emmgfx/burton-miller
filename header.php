@@ -74,7 +74,7 @@
     <meta name="expires" content="<?php echo gmdate ("D, d M Y H:i:s", time() + 60*60*24*7); ?>">
     <meta http-equiv="Cache-control" content="public">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" />
 	<?php wp_head(); ?>
 </head>
@@ -148,10 +148,10 @@
     			<div align="center" class="visible-xs">
     				<a href="#" class="mobile-menu-toggler">
     					<div id="hamburger">
-    					  <span></span>
-    					  <span></span>
-    					  <span></span>
-    					  <span></span>
+    					  <span></span> <!-- The -->
+    					  <span></span> <!-- four -->
+    					  <span></span> <!-- hamburger -->
+    					  <span></span> <!-- lines -->
     					</div>
     				</a>
     			</div>

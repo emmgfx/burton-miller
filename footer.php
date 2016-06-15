@@ -6,6 +6,7 @@
 		'google' => get_option('social-google', null),
 		'tumblr' => get_option('social-tumblr', null),
 		'pinterest' => get_option('social-pinterest', null),
+		'dribbble' => get_option('social-dribbble', null),
 	);
 
 	$at_leat_one_social = false;
@@ -35,6 +36,9 @@
 
 					if($social['pinterest'])
 						echo '<li><a href="'.$social['pinterest'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-pinterest-p"></i></a></li>';
+
+					if($social['dribbble'])
+						echo '<li><a href="'.$social['dribbble'].'" target="_blank" class="btn btn-burton btn-burton-social"><i class="fa fa-fw fa-dribbble"></i></a></li>';
 
 					?>
 				</ul>

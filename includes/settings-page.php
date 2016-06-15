@@ -7,6 +7,7 @@ function register_bm_settings() {
 	register_setting( 'bm-settings', 'social-google' );
 	register_setting( 'bm-settings', 'social-tumblr' );
 	register_setting( 'bm-settings', 'social-pinterest' );
+	register_setting( 'bm-settings', 'social-dribbble' );
 	register_setting( 'bm-settings', 'home-header-bg-attachment' );
 	register_setting( 'bm-settings', 'home-header-img-attachment' );
 	register_setting( 'bm-settings', 'home-header-white-text' );
@@ -182,6 +183,8 @@ function bm_settings() {
                 <p><input style="width: 100%;" type="text" name="social-tumblr" value="<?php echo esc_attr( get_option('social-tumblr') ); ?>" placeholder="http://..." /></p>
 				<p>Pinterest</p>
                 <p><input style="width: 100%;" type="text" name="social-pinterest" value="<?php echo esc_attr( get_option('social-pinterest') ); ?>" placeholder="http://..." /></p>
+				<p>Dribbble</p>
+                <p><input style="width: 100%;" type="text" name="social-dribbble" value="<?php echo esc_attr( get_option('social-dribbble') ); ?>" placeholder="http://..." /></p>
 				<p class="description">Keep the field empty if you don't want the button on the footer.</p>
 			</div>
 
