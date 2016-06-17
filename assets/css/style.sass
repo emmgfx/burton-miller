@@ -224,20 +224,30 @@ body
 	.wpcf7-form-control
 		&.wpcf7-text,
 		&.wpcf7-textarea
-			padding: .5em
-			border: 2px solid $color-gray-20
-			border-radius: 2em
 			text-align: center
-			resize: vertical
+			border: none
+			resize: none
 
 			&:focus
 				outline: none
-				border-color: $color-gray-70
+
+		&.wpcf7-textarea
+			height: 7em
 
 	.wpcf7-submit
 		@extend .btn-burton
-		background-color: white
+		@extend .btn-success
 
+		&:focus
+			outline: none
+
+	img.ajax-loader
+		display: block
+		margin: auto
+		le
+
+	.wpcf7-recaptcha
+		display: inline-block
 
 
 
