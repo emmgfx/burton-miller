@@ -1,7 +1,13 @@
-# burton-miller
-Wordpress theme. Work in proggress.
+# Burton & Miller
+Wordpress theme. Available for [download](https://github.com/emmgfx/burton-miller/releases) now and soon in the Wordpress directory.
 
 ![Screenshot](https://raw.githubusercontent.com/emmgfx/burton-miller/master/screenshot.png)
+
+## Portfolio plugin dependencies:
+
+This theme was made in parallel of the [emm-portfolio](https://github.com/emmgfx/emm-portfolio) plugin, distributed under the same license. It enables the portfolio features in the front-end and the back-end.
+
+This plugin isn't yet distributed in the wordpress directory, so, you should download it from Github and upload to the `wp-content/plugins/` folder.
 
 ## Contact Form 7 integration:
 
