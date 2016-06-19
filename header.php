@@ -85,7 +85,8 @@
     	<div class="header <?php echo ($haveHeaderImage ? 'with-image' : 'without-image'); ?> <?php echo ($option['home-header-white-text'] ? 'white-text' : ''); ?>" data-parallax="scroll" data-image-src="<?php echo $headerBG; ?>">
 
     		<div class="navigation">
-    			<h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+                <h1 class="pull-left hidden-xs"><a href="<?php echo get_site_url(); ?>"><?php bloginfo('title'); ?></a></h1>
+                <!-- <h1 class="pull-left hidden-xs with-image-logo"><a href="<?php echo get_site_url(); ?>"><img src="http://placehold.it/250x70/000/FFF" /></a></h1> -->
     			<div align="center" class="visible-xs">
     				<a href="#" class="mobile-menu-toggler">
     					<div id="hamburger">

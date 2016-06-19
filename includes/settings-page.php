@@ -11,6 +11,7 @@ function register_bm_settings() {
 	register_setting( 'bm-settings', 'home-header-bg-attachment' );
 	register_setting( 'bm-settings', 'home-header-img-attachment' );
 	register_setting( 'bm-settings', 'home-header-white-text' );
+	register_setting( 'bm-settings', 'logo-img' );
 	register_setting( 'bm-settings', 'portfolio-use-first-image-instead-featured' );
 	register_setting( 'bm-settings', 'portfolio-works-page' );
 
@@ -35,6 +36,118 @@ function bm_settings() {
 
             <?PHP settings_fields( 'bm-settings' ); ?>
             <?PHP do_settings_sections( 'bm-settings' ); ?>
+
+			<div class="card">
+                <h3><span class="dashicons dashicons-admin-appearance"></span> Logo:</h3>
+				<?php
+				$logo_img = get_option('logo-img');
+				?>
+				<style>
+				.logo-preview{
+					padding: 10px;
+					border-radius: 2px;
+					display: inline-block;
+					background-color: rgba(0,0,0,.5);
+					color: white;
+				}
+				.logo-img{
+					display: block;
+				}
+				</style>
+				<?php
+				$attachment = wp_get_attachment_url($logo_img);
+				?>
+				<div class="logo-preview">
+					<?php if($attachment != false): ?>
+					<img src="<?php echo wp_get_attachment_url($logo_img); ?>" class="logo-img" alt="No Logo"/>
+					<?php else: ?>
+					No logo configured, using title.
+					<?php endif; ?>
+				</div>
+
+				<p>Required size: 250x70px</p>
+
+				<a href="#" class="button logo-image-change">Change logo</a>
+				<a href="#" class="button logo-image-remove">Remove logo</a>
+				<input type="hidden" name="home-header-img-attachment" value="<?php echo intval($logo_img); ?>" />
+
+				<script>
+            	jQuery(document).ready(function() {
+
+            		var $ = jQuery;
+
+            		var file_frame_background, file_frame_image;
+
+					$(document).on('click', '.header-background-change', function( event ){
+
+                        event.preventDefault();
+
+                        if ( file_frame_background ) {
+                            file_frame_background.open();
+                            return;
+                        }
+
+                        file_frame_background = wp.media.frames.file_frame = wp.media({
+                            title: jQuery( this ).data( 'uploader_title' ),
+                            button: {
+                                text: jQuery( this ).data( 'uploader_button_text' ),
+                            },
+                            multiple: false
+                        });
+
+                        file_frame_background.on( 'select', function() {
+
+                            attachment = file_frame_background.state().get('selection').first().toJSON();
+
+                            $('.header-preview').css("background-image", "url(" + attachment.sizes.full.url + ")");
+                            $('input[name="home-header-bg-attachment"]').val(attachment.id);
+
+                        });
+
+                        file_frame_background.open();
+
+            		});
+
+					$(document).on('click', '.header-image-change', function( event ){
+
+                        event.preventDefault();
+
+                        if ( file_frame_image ) {
+                            file_frame_image.open();
+                            return;
+                        }
+
+                        file_frame_image = wp.media.frames.file_frame = wp.media({
+                            title: jQuery( this ).data( 'uploader_title' ),
+                            button: {
+                                text: jQuery( this ).data( 'uploader_button_text' ),
+                            },
+                            multiple: false
+                        });
+
+                        file_frame_image.on( 'select', function() {
+
+                            attachment = file_frame_image.state().get('selection').first().toJSON();
+
+							$('.header-preview img').attr("src", attachment.sizes.full.url);
+                            $('input[name="home-header-img-attachment"]').val(attachment.id);
+
+                        });
+
+                        file_frame_image.open();
+
+            		});
+
+            		$(document).on('click', '.header-image-remove', function(){
+                        $('input[name="home-header-img-attachment"]').val("");
+                        $('.header-preview img').attr("src", "");
+                        $('.logo-remove').addClass('disabled');
+            			return false;
+            		});
+
+            	});
+            	</script>
+            </div>
 
 			<div class="card">
                 <h3><span class="dashicons dashicons-admin-appearance"></span> Home header images:</h3>
@@ -157,7 +270,7 @@ function bm_settings() {
                 <h3><span class="dashicons dashicons-format-quote"></span> General options:</h3>
                 <p><label><input type="checkbox" name="portfolio-use-first-image-instead-featured" value="1" <?php if($portfolio_first_instead_featured){ echo 'checked'; } ?> /> Portfolio list items: Use first project image instead the featured. </label></p>
 				<p><label>
-					Full portfolio page: 
+					Full portfolio page:
 					<?php wp_dropdown_pages(array(
 						"name" => "portfolio-works-page",
 						"selected" => get_option("portfolio-works-page")
